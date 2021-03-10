@@ -3,6 +3,24 @@ A quick database for Node.js
 ## About OgnomDB
 OgnomDB is a quick database for Node.js. It is built on top of [NeDB](https://github.com/louischatriot/nedb/) and meant to be a quicker and more reliable version of [Quick.db](https://github.com/lorencerri/quick.db). Also, In case you haven't noticed already, Ognom is Mongo spelled backwards. 🤪
 
+## Demonstration
+```js
+const db = require('ognom.db');
+db.set('money', 50).then(() => {
+  db.get('money').then(money => {
+    console.log(money); // 50
+    db.set('items', [
+      'sword',
+      'armor'
+    ]).then(() => {
+      db.get('*').then(allItems => {
+        console.log(allItems); // { money: 50, items: [ 'sword', 'armor' ] }
+      });
+    });
+  });
+});
+```
+
 ## Documentation
 
 ### `Ognom.get(key)`
