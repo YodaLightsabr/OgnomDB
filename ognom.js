@@ -1,4 +1,5 @@
 var Datastore = require('nedb'), db = new Datastore({ filename: __dirname + '/ognom.db', autoload: true });
+
 var createdb = function () {
   return new Promise((resolve, reject) => {
     var doc = { belongsTo: 'ognom', rawData: {} };
@@ -8,10 +9,12 @@ var createdb = function () {
     });
   });
 }
+
 /**
  * Get a value from the database
  * @param {string} index - The key that you want to get
  */
+
 var dbget = function (index) {
   return new Promise(async (resolve, reject) => {
     db.find({ belongsTo: 'ognom' }, async function (err, docs) {
@@ -40,11 +43,13 @@ var dbget = function (index) {
     });
   });
 }
+
 /**
  * Set a key in the database
  * @param {string} key - The key that you want to set
  * @param {*} value - The value to set
  */
+
 var dbset = function (key, value) {
   return new Promise((resolve, reject) => {
     var setObj = {};
@@ -55,20 +60,24 @@ var dbset = function (key, value) {
     });
   });
 }
+
 /**
  * Delete a key in the database
  * @param {string} key - The key that you want to delete
  */
+
 var dbdelete = function (key) {
   return new Promise((resolve, reject) => {
     dbset(key, undefined).then(resolve).catch(reject);
   });
 }
+
 /**
  * Push to an array in the database
  * @param {string} key - The key that you want to push to
  * @param {*} value - The value to push
  */
+
 var dbpush = function (key, value) {
   return new Promise(async (resolve, reject) => {
     var data = await dbget(key);
@@ -82,9 +91,11 @@ var dbpush = function (key, value) {
     });
   });
 }
+
 var dotnotation = function (ref, object) {
   return ref.split('.').reduce((o,i)=>o[i], object);
 }
+
 var cleanObject = function (original) {
   try {
     var newObject = new Object();
@@ -94,6 +105,7 @@ var cleanObject = function (original) {
     return original;
   }
 }
+
 var output = {};
 output.get = dbget;
 output.set = dbset;
