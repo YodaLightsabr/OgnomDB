@@ -46,6 +46,7 @@ returns `Promise<Number>`
 
 ### `Ognom.delete(key)`
  - `key` - The key to delete. If deleting a key nested inside of objects, use dot notation. Required
+   - If `key` is `"*"`, Ognom will delete the entire database.
 
 returns `Promise<Number>`
 
