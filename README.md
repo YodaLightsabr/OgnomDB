@@ -26,7 +26,7 @@ db.set('money', 50).then(() => {
 ### `Ognom.get(key)`
 Get a key in the database
  - `key` - The key to get. If getting a key nested inside of objects, use dot notation. Required
-
+   - If `key` is `"*"`, Ognom will return the entire database.
 returns `Promise<any>`
 
 ### `Ognom.set(key, value)`
