@@ -67,8 +67,17 @@ var dbset = function (key, value) {
  */
 
 var dbdelete = function (key) {
-  return new Promise((resolve, reject) => {
-    dbset(key, undefined).then(resolve).catch(reject);
+  return new Promise(async (resolve, reject) => {
+    if (key !== "*") {
+      dbset(key, undefined).then(resolve).catch(reject);
+    } else {
+      var all = await db.get('*');
+      var keys = Object.keys(all);
+      var values = Object.values(all);
+      for (var i = 0; i < keys.length; i++) {
+        await dbdelete(keys[i]);
+      }
+      resolve(true);
   });
 }
 
