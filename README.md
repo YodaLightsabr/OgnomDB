@@ -1,3 +1,4 @@
+> :warning: **OgnomDB is deprecated. Please use RobinDB instead.**
 # OgnomDB
 A quick database for Node.js
 ## About OgnomDB
